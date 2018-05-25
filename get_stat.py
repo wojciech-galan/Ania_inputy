@@ -1,5 +1,6 @@
 import sys
 import os
+# author of the script was Jan Majta, it was only modified by me
 
 atoms = {'1': 'H', '6': 'C', '8': 'O'}
 
