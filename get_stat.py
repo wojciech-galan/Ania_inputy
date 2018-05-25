@@ -6,36 +6,30 @@ atoms = {'1': 'H', '6': 'C', '8': 'O'}
 
 
 class Frame:
-    ''' '''
 
     def __init__(self):
-        ''' '''
         self.coordinates = []
         self.energy = 'nan'
         self.status = 0
         self.degree = 0
 
     def __str__(self):
-        ''' '''
         coords = ['    '.join([atoms[c[1]], c[3], c[4], c[5]]) for c in self.coordinates]
-        return '   {}\nscf done: {}\n{}'.format(len(self.coordinates), \
-                                                self.energy, \
+        return '   {}\nscf done: {}\n{}'.format(len(self.coordinates),
+                                                self.energy,
                                                 '\n'.join(coords))
 
     def add_coord(self, line):
-        ''' '''
         self.coordinates.append(line.strip().split())
 
 
 class Log_file:
-    ''' '''
 
     def __init__(self, fname):
         self.fname = fname
         self.frames = []
 
     def parse(self):
-        ''' '''
         catch_xyz = False
         with open(self.fname) as fcont:
             for line in fcont:
@@ -53,7 +47,7 @@ class Log_file:
                     # after frame
                     catch_xyz = True
                     continue
-                if catch_xyz == True:
+                if catch_xyz:
                     if set(line.strip()) == {'-'} or \
                             'Coordinates' in line or \
                             'Number' in line:
@@ -71,7 +65,6 @@ class Log_file:
 
 
 if __name__ == '__main__':
-    ''' '''
     log = Log_file(sys.argv[1])
     log.parse()
     if not os.path.exists('stationary'):
