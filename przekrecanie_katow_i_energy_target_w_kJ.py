@@ -66,6 +66,7 @@ if __name__ == '__main__':
     args = parser.parse_args()
     in_dir = args.input_directory #'/home/wojtek/Dokumenty/Ania_do_fitowania/dla_Wojtka_new/'
     out_dir = args.output_directory #'/home/wojtek/Dokumenty/Ania_do_fitowania/dla_Wojtka_new_processed/'
+    shutil.rmtree(out_dir)
     qm = []
     for directory in sorted(os.listdir(in_dir)):
         print(directory)
